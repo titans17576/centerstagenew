@@ -17,7 +17,7 @@ import com.qualcomm.robotcore.util.Range;
  * @return  the image at the specified URL
  * @see testWheels
  */
-@TeleOp(name="testWheels")
+
 public class testWheels {
     robot R;
 
