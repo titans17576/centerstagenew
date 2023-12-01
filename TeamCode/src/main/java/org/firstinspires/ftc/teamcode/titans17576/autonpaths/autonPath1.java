@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+
 import org.firstinspires.ftc.teamcode.robot;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
@@ -23,19 +23,25 @@ public class autonPath1 extends LinearOpMode {
         drive.rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         drive.rightRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        Trajectory trajectoryForward = drive.trajectoryBuilder(new Pose2d())
-                .strafeLeft(12)
+        TrajectorySequence blueLeft = drive.trajectorySequenceBuilder(new Pose2d(-60,-36,Math.toRadians(0)))
+                //if TeamProp=left {
+                //.lineToSplineHeading(new Pose2d(-35, -34, Math.toRadians(90)
+                //else if TeamProp=center
+                //.lineToSplineHeading(new Pose2d(-35, -36, Math.toRadians(0)))
+                //else if TeamProp=right
+                .lineToSplineHeading(new Pose2d(-35, -36, Math.toRadians(270)))
+                //}
+                .waitSeconds(0.5)
+                .lineToLinearHeading(new Pose2d(-60,-36,Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(-56, -57, Math.toRadians(270)))
+                .lineToSplineHeading(new Pose2d(-12, -58, Math.toRadians(270)))
+                .waitSeconds(2)
+                .lineToLinearHeading(new Pose2d(-12, 58, Math.toRadians(270)))
                 .build();
-
-        Trajectory trajectoryBackward = drive.trajectoryBuilder(trajectoryForward.end())
-                .strafeRight(12)
-                .build();
-
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested()) {
-            drive.followTrajectory(trajectoryForward);
-            drive.followTrajectory(trajectoryBackward);
+            drive.followTrajectorySequence(blueLeft);
         }
     }
 }

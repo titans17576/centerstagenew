@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.Range;
  *
  *
  * @param an absolute URL giving the base location of the image
- * @param namethe location of the image, relative to the url argument
+ * @param name the location of the image, relative to the url argument
  * @return  the image at the specified URL
  * @see driveControls
  */
