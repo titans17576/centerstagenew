@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.Range;
@@ -11,11 +12,12 @@ import com.qualcomm.robotcore.util.Range;
  *
  *
  *
- * @param an absolute URL giving the base location of the image
- * @param name the location of the image, relative to the url argument
+ //* @param an absolute URL giving the base location of the image
+ //* @param name the location of the image, relative to the url argument
  * @return  the image at the specified URL
  * @see testWheels
  */
+@TeleOp(name="testWheels")
 public class testWheels {
     robot R;
 
