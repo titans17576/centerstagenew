@@ -1,6 +1,6 @@
 # Welcome
 
-This gitbook contains the documentation for the Titans 17576 centerstagenew github repository.
+This gitbook contains the documentation for the Titans 17576 titanic github repository.
 
 ## Branches
 
