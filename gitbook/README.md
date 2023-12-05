@@ -1,8 +1,4 @@
----
-description: A lovely welcome page
----
-
-# Welcome
+# Untitled
 
 Welcome to our documentation
 
