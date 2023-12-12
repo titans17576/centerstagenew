@@ -7,16 +7,21 @@ import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-
-
+import org.firstinspires.ftc.teamcode.titans17576.autonpaths.vision.vision;
 import org.firstinspires.ftc.teamcode.robot;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 @Config
 @Autonomous(group = "drive")
 public class autonPath1 extends LinearOpMode {
+
+    vision.Location loc;
     @Override
     public void runOpMode() throws InterruptedException {
+
+        vision V = new vision();
+        V.initVision(hardwareMap);
+
         robot drive = new robot(hardwareMap);
         drive.leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         drive.leftRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -38,10 +43,32 @@ public class autonPath1 extends LinearOpMode {
                 .waitSeconds(2)
                 .lineToLinearHeading(new Pose2d(-12, 58, Math.toRadians(270)))
                 .build();
+        Trajectory left = drive.trajectoryBuilder(new Pose2d())
+                .strafeLeft(20)
+                .build();
+        Trajectory center = drive.trajectoryBuilder(new Pose2d())
+                .forward(20)
+                .build();
+        Trajectory right = drive.trajectoryBuilder(new Pose2d())
+                .strafeRight(20)
+                .build();
+
+        while (!opModeIsActive()&&!isStopRequested()) {
+            loc = V.checkFrame();
+            telemetry.addData("Location",loc.toString());
+            telemetry.update();
+        }
+
         waitForStart();
 
-        while (opModeIsActive() && !isStopRequested()) {
-            drive.followTrajectorySequence(blueLeft);
+        if (loc == vision.Location.LEFT){
+            drive.followTrajectory(left);
+        }
+        else if (loc == vision.Location.CENTER){
+            drive.followTrajectory(center);
+        }
+        else if (loc == vision.Location.RIGHT){
+            drive.followTrajectory(right);
         }
     }
 }
