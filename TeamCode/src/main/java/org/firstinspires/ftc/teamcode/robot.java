@@ -72,7 +72,7 @@ public class robot extends MecanumDrive {
 
     private TrajectoryFollower follower;
 
-    public DcMotorEx leftFront, leftRear, rightRear, rightFront;
+    public DcMotorEx leftFront, leftRear, rightRear, rightFront, armMotor;
     private List<DcMotorEx> motors;
 
     private IMU imu;
@@ -105,11 +105,13 @@ public class robot extends MecanumDrive {
         leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
         rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+        armMotor = hardwareMap.get(DcMotorEx.class, "armMotor");
 
         leftFront.setPower(0);
         leftRear.setPower(0);
         rightRear.setPower(0);
         rightFront.setPower(0);
+        armMotor.setPower(0);
 
         leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
         leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -123,7 +125,10 @@ public class robot extends MecanumDrive {
         rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
         rightRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
+        armMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront, armMotor);
 
         for (DcMotorEx motor : motors) {
             MotorConfigurationType motorConfigurationType = motor.getMotorType().clone();

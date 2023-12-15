@@ -1,9 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.util.Range;
 
 /**
  * Drive Controls
@@ -64,5 +62,4 @@ public class testWheels {
         R.rightFront.setPower(rightfrontPower);
         R.rightRear.setPower(rightrearPower);
     }
-
 }

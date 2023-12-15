@@ -21,10 +21,12 @@ public class TeleopTest extends LinearOpMode {
         Gamepad previousGamepad1 = new Gamepad();
 
         testWheels TestWheels = new testWheels(R, currentGamepad1,previousGamepad1);
+        testArm TestArm = new testArm(R, telemetry, gamepad1, previousGamepad1);
 
         waitForStart();
 
         TestWheels.initialize();
+        TestArm.initialize();
 
         while(opModeIsActive()){
             // Previous gamepad implementation code
@@ -33,6 +35,7 @@ public class TeleopTest extends LinearOpMode {
 
             // Drive control update
             TestWheels.drive();
+            TestArm.measure();
 
             // Update telemetry data
             telemetry.update();

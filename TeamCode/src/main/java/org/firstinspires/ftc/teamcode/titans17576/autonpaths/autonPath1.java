@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 @Autonomous(group = "drive")
 public class autonPath1 extends LinearOpMode {
 
-    vision.Location loc;
+    vision.Location loc = vision.Location.NOT_FOUND;
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -44,13 +44,13 @@ public class autonPath1 extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d(-12, 58, Math.toRadians(270)))
                 .build();
         Trajectory left = drive.trajectoryBuilder(new Pose2d())
-                .strafeLeft(20)
+                .strafeLeft(5)
                 .build();
         Trajectory center = drive.trajectoryBuilder(new Pose2d())
-                .forward(20)
+                .forward(5)
                 .build();
         Trajectory right = drive.trajectoryBuilder(new Pose2d())
-                .strafeRight(20)
+                .strafeRight(5)
                 .build();
 
         while (!opModeIsActive()&&!isStopRequested()) {

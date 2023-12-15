@@ -10,7 +10,7 @@ import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 public class TeamObjectDetector extends OpenCvPipeline {
-    Telemetry telemetry;
+
     Mat mat = new Mat();
     public enum Location {
         LEFT,
@@ -66,21 +66,16 @@ public class TeamObjectDetector extends OpenCvPipeline {
         boolean rightSpike = rightValue > PERCENT_COLOR_THRESHOLD;
         if(!(leftSpike || centerSpike || rightSpike)){
             location = vision.Location.NOT_FOUND;
-            telemetry.addData("Spike Location", "not found");
         }
         else if (rightValue > centerValue && rightValue > leftValue) {
             location = vision.Location.RIGHT;
-            telemetry.addData("Spike Location", "right");
         }
         else if (centerValue > rightValue && centerValue > leftValue) {
             location = vision.Location.CENTER;
-            telemetry.addData("Spike Location", "center");
         }
         else if (leftValue > centerValue && leftValue > rightValue) {
             location = vision.Location.LEFT;
-            telemetry.addData("Spike Location", "left");
         }
-        telemetry.update();
 
         Imgproc.cvtColor(mat, mat, Imgproc.COLOR_GRAY2RGB);
 
