@@ -25,13 +25,13 @@ public class armFSM {
     LiftState liftState = LiftState.ZERO;
 
     // OpMode variables
-    robot R;
+    robotTemp R;
     Telemetry telemetry;
     Gamepad gamepad1;
     Gamepad previousGamepad1;
 
     // Import opmode variables when instance is created
-    public armFSM(robot Robot, Telemetry t, Gamepad g1, Gamepad gp1) {
+    public armFSM(robotTemp Robot, Telemetry t, Gamepad g1, Gamepad gp1) {
         R = Robot;
         telemetry = t;
         gamepad1 = g1;

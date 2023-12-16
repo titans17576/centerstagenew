@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.robot;
+import org.firstinspires.ftc.teamcode.robotTemp;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 @Config
@@ -16,10 +17,8 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 public class autonTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        robot drive = new robot(hardwareMap);
-        drive.leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robotTemp drive = new robotTemp(hardwareMap);
         drive.leftRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        drive.rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         drive.rightRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         Trajectory trajectoryForward = drive.trajectoryBuilder(new Pose2d())

@@ -15,17 +15,17 @@ import java.util.HashMap;
 public class TeleopTest extends LinearOpMode {
     @Override
     public void runOpMode(){
-        robot R = new robot(hardwareMap);
+        robotTemp R = new robotTemp(hardwareMap);
 
         Gamepad currentGamepad1 = new Gamepad();
         Gamepad previousGamepad1 = new Gamepad();
 
-        testWheels TestWheels = new testWheels(R, currentGamepad1,previousGamepad1);
+        //testWheels TestWheels = new testWheels(R, currentGamepad1,previousGamepad1);
         testArm TestArm = new testArm(R, telemetry, gamepad1, previousGamepad1);
 
         waitForStart();
 
-        TestWheels.initialize();
+        //TestWheels.initialize();
         TestArm.initialize();
 
         while(opModeIsActive()){
@@ -34,7 +34,7 @@ public class TeleopTest extends LinearOpMode {
             currentGamepad1.copy(gamepad1);
 
             // Drive control update
-            TestWheels.drive();
+            //TestWheels.drive();
             TestArm.measure();
 
             // Update telemetry data

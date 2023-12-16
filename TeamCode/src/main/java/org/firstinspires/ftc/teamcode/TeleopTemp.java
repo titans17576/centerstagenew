@@ -11,8 +11,8 @@ import com.qualcomm.robotcore.util.Range;
 
 import java.util.HashMap;
 
-@TeleOp(name="Teleop1")
-public class Teleop1 extends LinearOpMode {
+@TeleOp(name="TeleopTemp")
+public class TeleopTemp extends LinearOpMode {
     @Override
     public void runOpMode(){
         robotTemp R = new robotTemp(hardwareMap);
