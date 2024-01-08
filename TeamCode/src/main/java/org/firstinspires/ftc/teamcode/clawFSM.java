@@ -22,13 +22,13 @@ public class clawFSM {
     ClawState clawState = ClawState.CLOSED;
 
     // OpMode variables
-    robotTemp R;
+    robot R;
     Telemetry telemetry;
     Gamepad gamepad1;
     Gamepad previousGamepad1;
 
     // Import opmode variables when instance is created
-    public clawFSM(robotTemp Robot, Telemetry t, Gamepad g1, Gamepad pg1) {
+    public clawFSM(robot Robot, Telemetry t, Gamepad g1, Gamepad pg1) {
         R = Robot;
         telemetry = t;
         gamepad1 = g1;
@@ -59,7 +59,7 @@ public class clawFSM {
                 }
 
                 // State inputs
-                if(gamepad1.a && !previousGamepad1.a){
+                if(gamepad1.b && !previousGamepad1.b){
                     clawState = ClawState.OPEN;
                     telemetry.addData("Claw Move Requested", "TRUE");
                 } else {

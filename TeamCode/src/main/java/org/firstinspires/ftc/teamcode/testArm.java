@@ -6,14 +6,14 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 
 public class testArm {
-    robotTemp R;
+    robot R;
     Telemetry telemetry;
     Gamepad gamepad1;
     Gamepad previousGamepad1;
 
     double armMotorPower = 0;
 
-    public testArm(robotTemp Robot, Telemetry t, Gamepad gp1, Gamepad pgp1) {
+    public testArm(robot Robot, Telemetry t, Gamepad gp1, Gamepad pgp1) {
         R = Robot;
         gamepad1 = gp1;
         telemetry = t;

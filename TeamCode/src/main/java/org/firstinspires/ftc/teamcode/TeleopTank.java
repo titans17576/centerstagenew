@@ -1,30 +1,25 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.exception.RobotCoreException;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.usb.RobotArmingStateNotifier;
-import com.qualcomm.robotcore.util.Range;
 
-import java.util.HashMap;
 
-@TeleOp(name="TeleopTemp")
-public class TeleopTemp extends LinearOpMode {
+@TeleOp(name="TeleopTank")
+public class TeleopTank extends LinearOpMode {
     @Override
     public void runOpMode(){
-        robotTemp R = new robotTemp(hardwareMap);
+        robot R = new robot(hardwareMap);
 
         Gamepad currentGamepad1 = new Gamepad();
         Gamepad previousGamepad1 = new Gamepad();
 
-        tempDriveControls TempDriveControls = new tempDriveControls(R, currentGamepad1,previousGamepad1);
+        driveControls driveControls = new driveControls(R, currentGamepad1,previousGamepad1);
+        clawFSM clawFSM = new clawFSM(R, telemetry, currentGamepad1, previousGamepad1);
 
         waitForStart();
 
-        TempDriveControls.initialize();
+        driveControls.initialize();
 
         while(opModeIsActive()){
             // Previous gamepad implementation code
@@ -32,7 +27,8 @@ public class TeleopTemp extends LinearOpMode {
             currentGamepad1.copy(gamepad1);
 
             // Drive control update
-            TempDriveControls.drive();
+            clawFSM.teleopUpdate();
+            driveControls.tankDrive();
 
             // Update telemetry data
             telemetry.update();

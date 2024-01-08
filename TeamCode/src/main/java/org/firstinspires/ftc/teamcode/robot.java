@@ -25,6 +25,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
@@ -74,6 +75,7 @@ public class robot extends MecanumDrive {
 
     public DcMotorEx leftFront, leftRear, rightRear, rightFront, armMotor;
     private List<DcMotorEx> motors;
+    public Servo claw;
 
     private IMU imu;
     private VoltageSensor batteryVoltageSensor;
@@ -129,6 +131,7 @@ public class robot extends MecanumDrive {
         armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront, armMotor);
+        claw = hardwareMap.get(Servo.class, "claw");
 
         for (DcMotorEx motor : motors) {
             MotorConfigurationType motorConfigurationType = motor.getMotorType().clone();

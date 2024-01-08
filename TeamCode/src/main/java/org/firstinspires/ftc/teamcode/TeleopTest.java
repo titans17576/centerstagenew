@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class TeleopTest extends LinearOpMode {
     @Override
     public void runOpMode(){
-        robotTemp R = new robotTemp(hardwareMap);
+        robot R = new robot(hardwareMap);
 
         Gamepad currentGamepad1 = new Gamepad();
         Gamepad previousGamepad1 = new Gamepad();

@@ -15,16 +15,17 @@ import java.util.HashMap;
 public class Teleop1 extends LinearOpMode {
     @Override
     public void runOpMode(){
-        robotTemp R = new robotTemp(hardwareMap);
+        robot R = new robot(hardwareMap);
 
         Gamepad currentGamepad1 = new Gamepad();
         Gamepad previousGamepad1 = new Gamepad();
 
-        tempDriveControls TempDriveControls = new tempDriveControls(R, currentGamepad1,previousGamepad1);
+        driveControls driveControls = new driveControls(R, currentGamepad1,previousGamepad1);
+        clawFSM clawFSM = new clawFSM(R, telemetry, currentGamepad1, previousGamepad1);
 
         waitForStart();
 
-        TempDriveControls.initialize();
+        driveControls.initialize();
 
         while(opModeIsActive()){
             // Previous gamepad implementation code
@@ -32,7 +33,8 @@ public class Teleop1 extends LinearOpMode {
             currentGamepad1.copy(gamepad1);
 
             // Drive control update
-            TempDriveControls.drive();
+            clawFSM.teleopUpdate();
+            driveControls.drive();
 
             // Update telemetry data
             telemetry.update();

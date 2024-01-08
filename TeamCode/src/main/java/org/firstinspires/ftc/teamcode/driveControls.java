@@ -61,6 +61,20 @@ public class driveControls {
 
     }
 
+    public void tankDrive() {
+        if (gamepad1.left_trigger >= 0.5 && previousGamepad1.left_trigger < 0.5) {
+            slow = (slow == regSpeed)? slowSpeed : regSpeed;
+        }
+        double left = -gamepad1.left_stick_y;
+        double right = -gamepad1.right_stick_y;
+
+        R.leftRear.setPower(calcPower(left, slow));
+        R.leftFront.setPower(calcPower(left, slow));
+        R.rightRear.setPower(calcPower(right, slow));
+        R.rightFront.setPower(calcPower(right, slow));
+
+    }
+
     static double calcPower(double power, double slow) {
         //Returns the power^2 in the same direction as power bounded & multiplied by slow
         return Range.clip(power * power * Math.signum(power) * slow,-slow,slow);
