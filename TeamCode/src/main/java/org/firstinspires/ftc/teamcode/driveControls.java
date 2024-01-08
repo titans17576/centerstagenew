@@ -49,18 +49,18 @@ public class driveControls {
         }
 
         // Drive inputs
-        double drive = -gamepad1.left_stick_y;
-        double turn = gamepad1.right_stick_x;
-        double strafe = gamepad1.left_stick_x;
+        double drive = -gamepad1.left_stick_y;//y
+        double strafe = gamepad1.left_stick_x * 1.1;//x, smoother strafing
+        double turn = gamepad1.right_stick_x;//rx
 
         // Drive calculations
-        R.leftRear.setPower(calcPower(drive + turn - strafe, slow));
         R.leftFront.setPower(calcPower(drive + turn + strafe, slow));
-        R.rightRear.setPower(calcPower(drive - turn + strafe, slow));
+        R.leftRear.setPower(calcPower(drive - strafe + turn, slow));
         R.rightFront.setPower(calcPower(drive - turn - strafe, slow));
+        R.rightRear.setPower(calcPower(drive + strafe - turn, slow));
 
     }
-
+    //no strafing, left and right joysticks used to control power to either side
     public void tankDrive() {
         if (gamepad1.left_trigger >= 0.5 && previousGamepad1.left_trigger < 0.5) {
             slow = (slow == regSpeed)? slowSpeed : regSpeed;

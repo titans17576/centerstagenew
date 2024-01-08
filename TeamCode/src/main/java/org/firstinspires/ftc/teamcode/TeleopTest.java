@@ -11,6 +11,13 @@ import com.qualcomm.robotcore.util.Range;
 
 import java.util.HashMap;
 
+/**
+ * Test Teleop
+ * <p>
+ * Program for running tests on different systems on the robot
+ * Currently used to test arm and wheels
+ * </p>
+ */
 @TeleOp(name="TeleopTest")
 public class TeleopTest extends LinearOpMode {
     @Override

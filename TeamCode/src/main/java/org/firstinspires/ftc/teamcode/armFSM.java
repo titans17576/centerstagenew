@@ -19,7 +19,7 @@ public class armFSM {
     final int position_tolerance = 5;
     final int zero_position = 0;
     final int low_position = 800;
-    final int mid_position = 1200; // max we could reach was like 1500 ticks so idk
+    final int mid_position = 1200; // max we could reach was about 1500 motor ticks
 
     // LiftState instance variable
     LiftState liftState = LiftState.ZERO;
