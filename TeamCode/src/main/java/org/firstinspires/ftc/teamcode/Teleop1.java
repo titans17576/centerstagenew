@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.exception.RobotCoreException;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.usb.RobotArmingStateNotifier;
 import com.qualcomm.robotcore.util.Range;
@@ -21,7 +22,6 @@ public class Teleop1 extends LinearOpMode {
         Gamepad previousGamepad1 = new Gamepad();
 
         driveControls driveControls = new driveControls(R, currentGamepad1,previousGamepad1);
-        clawFSM clawFSM = new clawFSM(R, telemetry, currentGamepad1, previousGamepad1);
 
         waitForStart();
 
@@ -33,9 +33,19 @@ public class Teleop1 extends LinearOpMode {
             currentGamepad1.copy(gamepad1);
 
             // Drive control update
-            clawFSM.teleopUpdate();
-            driveControls.drive();
 
+            driveControls.drive();
+            if(gamepad1.a && !previousGamepad1.a){
+                R.claw.setDirection(DcMotorSimple.Direction.REVERSE);
+                R.claw.setPower(1);
+            }
+            else if(gamepad1.y && !previousGamepad1.y){
+                R.claw.setDirection(DcMotorSimple.Direction.FORWARD);
+                R.claw.setPower(1);
+            }
+            else if(gamepad1.x && !previousGamepad1.x){
+                R.claw.setPower(0);
+            }
             // Update telemetry data
             telemetry.update();
         }

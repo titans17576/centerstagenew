@@ -1,15 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.exception.RobotCoreException;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.usb.RobotArmingStateNotifier;
-import com.qualcomm.robotcore.util.Range;
-
-import java.util.HashMap;
 
 /**
  * Test Teleop
@@ -18,8 +11,8 @@ import java.util.HashMap;
  * Currently used to test arm and wheels
  * </p>
  */
-@TeleOp(name="TeleopTest")
-public class TeleopTest extends LinearOpMode {
+@TeleOp(name="TeleopTestEncoder")
+public class TeleopTestEncoder extends LinearOpMode {
     @Override
     public void runOpMode(){
         robot R = new robot(hardwareMap);
@@ -27,19 +20,24 @@ public class TeleopTest extends LinearOpMode {
         Gamepad currentGamepad1 = new Gamepad();
         Gamepad previousGamepad1 = new Gamepad();
 
-        testWheels TestWheels = new testWheels(R, currentGamepad1,previousGamepad1);
+        testWheelsEncoder TestWheelsEncoder = new testWheelsEncoder(R, currentGamepad1,previousGamepad1);
 
         waitForStart();
 
-        TestWheels.initialize();
+        TestWheelsEncoder.initialize();
 
 
         while(opModeIsActive()){
             // Previous gamepad implementation code
             previousGamepad1.copy(currentGamepad1);
             currentGamepad1.copy(gamepad1);
+
             // Drive control update
-            TestWheels.drive();
+            TestWheelsEncoder.drive();
+            telemetry.addData("leftFront",R.leftFront.getCurrentPosition());
+            telemetry.addData("leftRear",R.leftRear.getCurrentPosition());
+            telemetry.addData("rightFront",R.rightFront.getCurrentPosition());
+            telemetry.addData("rightRear",R.rightRear.getCurrentPosition());
 
 
             // Update telemetry data

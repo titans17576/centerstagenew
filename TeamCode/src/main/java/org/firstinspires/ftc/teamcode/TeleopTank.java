@@ -15,7 +15,7 @@ public class TeleopTank extends LinearOpMode {
         Gamepad previousGamepad1 = new Gamepad();
 
         driveControls driveControls = new driveControls(R, currentGamepad1,previousGamepad1);
-        clawFSM clawFSM = new clawFSM(R, telemetry, currentGamepad1, previousGamepad1);
+
 
         waitForStart();
 
@@ -27,7 +27,7 @@ public class TeleopTank extends LinearOpMode {
             currentGamepad1.copy(gamepad1);
 
             // Drive control update
-            clawFSM.teleopUpdate();
+
             driveControls.tankDrive();
 
             // Update telemetry data
