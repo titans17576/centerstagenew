@@ -77,7 +77,7 @@ public class robot extends MecanumDrive {
     public DcMotorEx leftFront, leftRear, rightRear, rightFront;
     private List<DcMotorEx> motors;
     public CRServo claw;
-
+    public Servo pixelPreload, hinge, actClaw;
 
     private IMU imu;
     private VoltageSensor batteryVoltageSensor;
@@ -102,18 +102,25 @@ public class robot extends MecanumDrive {
         // TODO: adjust the names of the following hardware devices to match your configuration
         imu = hardwareMap.get(IMU.class, "imu");
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                DriveConstants.LOGO_FACING_DIR, DriveConstants.USB_FACING_DIR));
+                DriveConstants.LOGO_FACING_DIR.LEFT, DriveConstants.USB_FACING_DIR.UP));
         imu.initialize(parameters);
 
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
         leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
         rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+        //arm = hardwareMap.get(DcMotorEx.class, "arm");
+        claw = hardwareMap.get(CRServo.class, "claw");
+        pixelPreload = hardwareMap.get(Servo.class, "pixelPreload");
+        hinge = hardwareMap.get(Servo.class, "hinge");
+        actClaw = hardwareMap.get(Servo.class, "actClaw");
 
         leftFront.setPower(0);
         leftRear.setPower(0);
         rightRear.setPower(0);
         rightFront.setPower(0);
+        //arm.setPower(0);
+        claw.setPower(0);
 
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -127,7 +134,10 @@ public class robot extends MecanumDrive {
         rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
         rightRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        claw = hardwareMap.get(CRServo.class, "claw");
+        //arm.setDirection(DcMotorSimple.Direction.FORWARD);
+        //arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
 
         for (DcMotorEx motor : motors) {

@@ -64,7 +64,6 @@ public class testWheelsEncoder {
                 R.leftRear.setTargetPosition(1000);
                 R.leftRear.setPower(0.8);
                 R.leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                wait(500)
                 R.leftRear.setPower(0);
             }
             else{

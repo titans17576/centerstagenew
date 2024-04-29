@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.exception.RobotCoreException;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.usb.RobotArmingStateNotifier;
 import com.qualcomm.robotcore.util.Range;
 
@@ -46,7 +47,32 @@ public class Teleop1 extends LinearOpMode {
             else if(gamepad1.x && !previousGamepad1.x){
                 R.claw.setPower(0);
             }
-            // Update telemetry data
+
+            if(gamepad1.dpad_down && !previousGamepad1.dpad_down){
+                R.pixelPreload.setDirection(Servo.Direction.FORWARD);
+                R.pixelPreload.setPosition(0);
+            }
+            else if(gamepad1.dpad_up && !previousGamepad1.dpad_up){
+                R.pixelPreload.setDirection(Servo.Direction.FORWARD);
+                R.pixelPreload.setPosition(1);
+            }
+
+            if(gamepad1.left_bumper && !previousGamepad1.left_bumper){
+                R.actClaw.setPosition(0);
+            }
+            else if(gamepad1.right_bumper && !previousGamepad1.right_bumper){
+                R.actClaw.setPosition(1);
+            }
+
+            if(gamepad1.dpad_left && !previousGamepad1.dpad_left){
+                R.hinge.setPosition(0);
+            }
+            else if(gamepad1.dpad_right && !previousGamepad1.dpad_right){
+                R.hinge.setPosition(1);
+            }
+
+
+                // Update telemetry data
             telemetry.update();
         }
     }

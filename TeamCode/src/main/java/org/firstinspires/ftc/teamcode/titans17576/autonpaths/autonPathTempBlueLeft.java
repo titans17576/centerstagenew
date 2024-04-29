@@ -2,18 +2,18 @@ package org.firstinspires.ftc.teamcode.titans17576.autonpaths;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import org.firstinspires.ftc.teamcode.titans17576.autonpaths.vision.vision;
+
 import org.firstinspires.ftc.teamcode.robot;
+import org.firstinspires.ftc.teamcode.titans17576.autonpaths.vision.vision;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 @Config
 @Autonomous(group = "drive")
-public class autonPath1 extends LinearOpMode {
+public class autonPathTempBlueLeft extends LinearOpMode {
 
     vision.Location loc = vision.Location.NOT_FOUND;
     @Override
@@ -61,14 +61,7 @@ public class autonPath1 extends LinearOpMode {
 
         waitForStart();
 
-        if (loc == vision.Location.LEFT){
-            drive.followTrajectory(left);
-        }
-        else if (loc == vision.Location.CENTER){
-            drive.followTrajectory(center);
-        }
-        else if (loc == vision.Location.RIGHT){
-            drive.followTrajectory(right);
+        drive.followTrajectory(left);
+
         }
     }
-}
